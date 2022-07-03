@@ -9,4 +9,6 @@ class ReportViewTestCase(AioHTTPTestCase):
 
     async def test_api(self):
         async with self.client.request("GET", "/report") as resp:
-            self.assertEqual(resp.status, 200)
+            assert resp.status == 200
+            text = await resp.text()
+            assert "this is a fake report" in text
