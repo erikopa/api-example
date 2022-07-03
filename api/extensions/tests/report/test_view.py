@@ -12,3 +12,9 @@ class ReportViewTestCase(AioHTTPTestCase):
             assert resp.status == 200
             text = await resp.text()
             assert "this is a fake report" in text
+
+    async def test_api_error(self):
+        async with self.client.request("GET", "/report/fake-report-error") as resp:
+            assert resp.status == 503
+            text = await resp.text()
+            assert "Fake report error" in text
