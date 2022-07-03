@@ -4,7 +4,7 @@ from aiohttp import web
 
 
 class JSONResponse(web.Response):
-    def __init__(self, *, data = None, status=200):
+    def __init__(self, *, data=None, status=200):
         if data and not isinstance(data, str):
             data = json.dumps(data)
 
